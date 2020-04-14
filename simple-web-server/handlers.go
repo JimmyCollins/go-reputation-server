@@ -2,6 +2,7 @@ package main
  
 import (
     "fmt"
+    "time"
     "net/http"
     //"encoding/json"
     "github.com/gorilla/mux"
@@ -23,14 +24,17 @@ func FileSHA256(w http.ResponseWriter, r *http.Request) {
 
     // Note: You need a valid VirusTotal API key for this to work
     // You can sign-up for a limited access public account for free
-    var apikey = "";
+    var apikey = "455f18250d4b09c1bcf67e5797a2831cae76ae24e3fe37432381ce7dff539686";
 
     client := vt.NewClient(apikey)
 
+    start := time.Now()
     file, err := client.GetObject(vt.URL("files/%s", sha256))
 	if err != nil {
 		fmt.Fprintln(w, "Error: ", err);
     }
+    fmt.Fprintln(w, "Time: ", time.Since(start))
+
 
     ls, err := file.GetTime("last_submission_date")
 	if err != nil {

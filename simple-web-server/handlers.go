@@ -23,7 +23,7 @@ func FileSHA256(w http.ResponseWriter, r *http.Request) {
 
     // Note: You need a valid VirusTotal API key for this to work
     // You can sign-up for a limited access public account for free
-    var apikey = "455f18250d4b09c1bcf67e5797a2831cae76ae24e3fe37432381ce7dff539686";
+    var apikey = "";
 
     client := vt.NewClient(apikey)
 

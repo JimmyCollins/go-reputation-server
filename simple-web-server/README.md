@@ -15,7 +15,7 @@ The VirusTotal client for Go:
 Mux for routing:
 
 ```
- go get https://github.com/gorilla/mux
+ go get github.com/gorilla/mux
 ```
 
 ### Building

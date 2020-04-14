@@ -2,7 +2,6 @@ package main
  
 import (
     "net/http"
- 
     "github.com/gorilla/mux"
 )
  
@@ -37,9 +36,9 @@ var routes = Routes{
         Index,
     },
     Route{
-        "FileMD5",
+        "FileSHA256",
         "GET",
-        "/file/{md5}",
-        FileMD5,
+        "/file/{sha256}",
+        FileSHA256,
     },
 }

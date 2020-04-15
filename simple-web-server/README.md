@@ -1,6 +1,6 @@
 # Simple Reputation Server
 
-A simple web server used as an exercise in learning Go. Currently it just uses the VirusTotal API to look up details about a given SHA256 hash. Note that you need a valid API key for the VirusTotal API added in handlers.go - you can sign-up for VirusTotal for free.
+A simple web server used as an exercise in learning Go. Currently it just uses the VirusTotal API to look up the MD5 of a given SHA256 hash. Note that you need a valid API key for the VirusTotal API added in handlers.go - you can sign-up for VirusTotal for free.
 
 ### Dependencies
 
@@ -16,6 +16,12 @@ Mux for routing:
 
 ```
  go get github.com/gorilla/mux
+```
+
+Zizuo for caching:
+
+```
+ go get github.com/arriqaaq/zizou
 ```
 
 ### Building

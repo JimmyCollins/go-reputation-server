@@ -1,15 +1,39 @@
 package main
- 
+
 import (
-    "log"
-    "net/http"
+	"fmt"
+	"log"
+	"net/http"
+	"time"
+
+	zz "github.com/arriqaaq/zizou"
 )
 
+var globalcache *zz.Cache
 
 func main() {
- 
-    router := NewRouter()
- 
-    log.Fatal(http.ListenAndServe(":8080", router))
+
+	router := NewRouter()
+
+	initializeCache()
+
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
- 
+
+func initializeCache() {
+	config := zz.Config{
+		SweepTime: 10 * time.Minute,
+		ShardSize: 256,
+	}
+
+	var err error
+
+	globalcache, err = zz.New(&config)
+
+	if err != nil {
+		fmt.Println("Error: ", err)
+		return
+	}
+
+	fmt.Println("Cache Setup done")
+}

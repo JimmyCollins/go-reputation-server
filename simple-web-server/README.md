@@ -32,7 +32,7 @@ Zizuo for caching:
 
 ### Examples
 
-Get a reputation server for a file, given a SHA256 hash of a file:
+Get details for a file, given a SHA256 hash of a file:
 
 ```
  http://localhost:8080/file/ab7da8511c7698ab10eaf29e0f5597b1616de9325be5124f72fb9eed26a6750e

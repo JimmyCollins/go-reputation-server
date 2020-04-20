@@ -1,0 +1,35 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: windows-latest
+    steps:
+
+    - name: Set up Go 1.14
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.14
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Get MongoDB lib
+      run: got get go.mongodb.org/mongo-driver/mongo
+    
+    - name: Get gorilla/mux
+      run: go get github.com/gorilla/mux
+      
+    - name: Get zizou
+      run: go get github.com/arriqaaq/zizou
+
+    - name: Build
+      run: go build -v .

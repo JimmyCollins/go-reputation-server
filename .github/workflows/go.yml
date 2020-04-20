@@ -23,7 +23,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Get MongoDB lib
-      run: got get go.mongodb.org/mongo-driver/mongo
+      run: go get go.mongodb.org/mongo-driver/mongo
     
     - name: Get gorilla/mux
       run: go get github.com/gorilla/mux

@@ -1,5 +1,7 @@
 # Simple Reputation Server
 
+![Go](https://github.com/JimmyCollins/go-reputation-server/workflows/Go/badge.svg)
+
 A simple web server that serves reputations of files, built from the ground up as an exercise in learning Go. Currently it uses MongoDB as the backend data store, and assumes it is running on the local machine.
 
 ### Dependencies

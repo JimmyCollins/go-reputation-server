@@ -15,6 +15,7 @@ func main() {
 
 	router := NewRouter()
 
+	// Setup the in-memory cache
 	initializeCache()
 
 	log.Fatal(http.ListenAndServe(":8080", router))

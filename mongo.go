@@ -62,7 +62,8 @@ func lookupReputation(sha256 string) Reputation {
 	} else {
 		fmt.Println("FindOne() result:", result)
 		fmt.Println("FindOne() Rep:", result.Rep)
-		fmt.Println("FindOne() Dept:", result.DateAdded)
+		fmt.Println("FindOne() Date Added:", result.DateAdded)
+		fmt.Println("FindOne() TTL:", result.TTL)
 	}
 
 	return result

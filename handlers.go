@@ -21,23 +21,24 @@ func FileSHA256(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "SHA256:", sha256)
 
 	// Check the cache to see if there is an entry for this key
-	checkCacheTime := time.Now()
+	cacheLatency := time.Now()
 	item, found := globalcache.Get(sha256)
 	if found {
 		fmt.Fprintln(w, "Cache hit, reputation is: ", item)
-		fmt.Fprintln(w, "Cache lookup time: ", time.Since(checkCacheTime).Microseconds())
+		fmt.Fprintln(w, "Cache lookup time (ms): ", time.Since(cacheLatency).Milliseconds())
 		return
 	}
 	fmt.Fprintln(w, "No cache hit, need to lookup MongoDB.")
 
 	var result Reputation
+	dbLatency := time.Now()
 	result = lookupReputation(sha256)
+	fmt.Fprintln(w, "Database lookup time (ms): ", time.Since(dbLatency).Milliseconds())
 
 	fmt.Fprintln(w, "Reputation: ", result.Rep)
 
 	// Update cache with this entry
-	// TODO: Update existing entry if it already exists (or validate that zizou works like this)
-	globalcache.Set(sha256, result.Rep, 10*time.Second) // TODO: Fix TTL value
+	globalcache.Set(sha256, result.Rep, time.Duration(result.TTL)*time.Second)
 
 }
 
@@ -46,7 +47,7 @@ func InsertFileRep(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	sha256 := vars["sha256"]
 	rep := vars["rep"]
-	ttl := 10
+	ttl := 10 // Default timeout is 10s - TODO: Externalize
 
 	fmt.Fprintln(w, "File Hash:", sha256)
 	fmt.Fprintln(w, "Reputation:", rep)

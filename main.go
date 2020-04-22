@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	zz "github.com/arriqaaq/zizou"
@@ -18,7 +19,22 @@ func main() {
 	// Setup the in-memory cache
 	initializeCache()
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	logger := log.New(os.Stderr, "logger: ", log.Lshortfile)
+
+	// Server setup
+	srv := &http.Server{
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		Addr:         ":8080",
+		Handler:      router,
+		ErrorLog:     logger,
+	}
+
+	// Start server
+	err := srv.ListenAndServe()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
 }
 
 func initializeCache() {

@@ -1,8 +1,6 @@
 # Simple Reputation Server
 
-![Go](https://github.com/JimmyCollins/go-reputation-server/workflows/Go/badge.svg)
-
-[![Go Report Card](https://goreportcard.com/badge/github.com/JimmyCollins/go-reputation-server)](https://goreportcard.com/report/github.com/JimmyCollins/go-reputation-server)
+![Go](https://github.com/JimmyCollins/go-reputation-server/workflows/Go/badge.svg) [![Go Report Card](https://goreportcard.com/badge/github.com/JimmyCollins/go-reputation-server)](https://goreportcard.com/report/github.com/JimmyCollins/go-reputation-server)
 
 A simple HTTP web server that serves reputations of files, built from the ground up as an exercise in learning Go. Currently uses MongoDB as the backend data store, and assumes it is running on the local machine.
 

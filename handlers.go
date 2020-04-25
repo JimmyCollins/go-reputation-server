@@ -11,7 +11,7 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Welcome!")
+	fmt.Fprintln(w, "Welcome! Nothing to see here.")
 }
 
 func FileSHA256(w http.ResponseWriter, r *http.Request) {

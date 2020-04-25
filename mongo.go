@@ -13,7 +13,7 @@ import (
 
 func insertReputation(rep Reputation) {
 
-	clientOptions := options.Client().ApplyURI("mongodb://127.0.0.1:27017")
+	clientOptions := options.Client().ApplyURI("mongodb://127.0.0.1:27017") // TODO: Externalize
 	database, err := mongo.Connect(context.TODO(), clientOptions)
 
 	if err != nil {
@@ -40,7 +40,7 @@ func insertReputation(rep Reputation) {
 
 func lookupReputation(sha256 string) Reputation {
 
-	clientOptions := options.Client().ApplyURI("mongodb://127.0.0.1:27017")
+	clientOptions := options.Client().ApplyURI("mongodb://127.0.0.1:27017") // TODO: Externalize
 
 	// Connect to the MongoDB and return Client instance
 	client, err := mongo.Connect(context.TODO(), clientOptions)
@@ -49,7 +49,7 @@ func lookupReputation(sha256 string) Reputation {
 	}
 
 	// Access a MongoDB collection through a database
-	col := client.Database("threatdata").Collection("reputations")
+	col := client.Database("threatdata").Collection("reputations") // TODO: Externalize
 
 	var result Reputation
 
